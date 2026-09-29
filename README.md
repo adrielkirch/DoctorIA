@@ -2,8 +2,20 @@
 
 A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a ChatGPT-like AI conversational interface, human-in-the-loop fallback escalation, social media integration capabilities, and robust multi-language support.
 
----
+<img width="1906" height="835" alt="image" src="https://github.com/user-attachments/assets/4bd64270-cbda-4e2a-bfa7-17d408ebcba4" />
 
+<img width="1600" height="706" alt="image" src="https://github.com/user-attachments/assets/759b7a4e-516a-4041-891f-154ef6d0c3d0" />
+
+<img width="1600" height="620" alt="image" src="https://github.com/user-attachments/assets/759cd71c-a13a-4b2a-817f-76d858a06f1c" />
+
+
+---
+# Next tasks
+
+  - Simple backend []
+  - PostgresSQL []
+  - Langraph infrastructure []
+  
 ## 🛠️ Tech Stack
 
 ### **Frontend**
