@@ -1,0 +1,99 @@
+@use "shepherd.js/dist/css/shepherd.css";
+@use "@core/scss/base/mixins";
+@use "@styles/variables/_vuetify.scss" as variables;
+
+.shepherd-button {
+  border-radius: 4px;
+  block-size: 30px;
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: variables.$button-font-weight;
+  margin-inline-end: 0.75rem;
+  padding-block: 0.375rem;
+  padding-inline: 0.75rem;
+
+  &:not(:disabled):hover {
+    color: #fff;
+  }
+}
+
+.shepherd-footer {
+  background: rgb(var(--v-theme-surface));
+  border-end-end-radius: 0.5rem;
+  border-end-start-radius: 0.5rem;
+  padding-block: 0 1.5rem;
+  padding-inline: 1.5rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-header {
+  background: rgb(var(--v-theme-surface));
+  border-start-end-radius: 0.5rem;
+  border-start-start-radius: 0.5rem;
+  padding-block: 1.5rem 0;
+  padding-inline: 1.5rem;
+}
+
+.shepherd-element .shepherd-content .shepherd-header .shepherd-title {
+  color: rgb(var(--v-theme-on-background));
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+.shepherd-text {
+  padding: 1.5rem;
+  background: rgb(var(--v-theme-surface));
+  color: rgb(var(--v-theme-on-background));
+  font-size: variables.$card-text-font-size;
+}
+
+.shepherd-cancel-icon {
+  color: rgba(var(--v-theme-on-background), var(--v-disabled-opacity)) !important;
+  font-size: 1.5rem;
+}
+
+.shepherd-element[data-popper-placement^="bottom"] {
+  margin-block-start: 0.75rem !important;
+}
+
+.shepherd-element[data-popper-placement^="top"] {
+  margin-block-start: -0.75rem !important;
+}
+
+.shepherd-element[data-popper-placement^="right"] {
+  margin-inline-start: 0.75rem !important;
+}
+
+.shepherd-element[data-popper-placement^="left"] {
+  margin-inline-end: 0.75rem !important;
+}
+
+.shepherd-element[data-popper-placement] {
+  .shepherd-arrow::before {
+    background: rgb(var(--v-theme-surface)) !important;
+  }
+}
+
+.shepherd-element {
+  border-radius: variables.$card-border-radius;
+  background: transparent;
+
+  @include mixins.elevation(8);
+}
+
+.nextBtnClass,
+.nextBtnClass:not(:disabled):hover {
+  background: rgb(var(--v-theme-primary));
+  box-shadow: 0 2px 4px 0 rgba(var(--v-theme-primary), 0.4);
+}
+
+.backBtnClass,
+.backBtnClass:not(:disabled):hover {
+  background: rgba(var(--v-theme-secondary), var(--v-medium-emphasis-opacity));
+  box-shadow: 0 2px 4px 0 rgba(var(--v-theme-secondary), 0.4);
+}
+
+@media screen and (max-width: 600px) {
+  .shepherd-element {
+    max-inline-size: 75vw;
+  }
+}

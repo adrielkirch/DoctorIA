@@ -1,0 +1,98 @@
+@use "@layouts/styles/mixins" as layoutsMixins;
+@use "@core/scss/base/variables";
+@use "@layouts/styles/placeholders";
+@use "@core/scss/base/mixins";
+
+
+%horizontal-nav-item {
+  padding-block: 0.6rem;
+  padding-inline: 1rem;
+}
+
+
+%horizontal-nav-top-level-item {
+  border-radius: 0.4rem;
+}
+
+%horizontal-nav-disabled {
+  opacity: var(--v-disabled-opacity);
+  pointer-events: none;
+}
+
+
+%horizontal-nav-sub-nav-link-active {
+  background: rgba(var(--v-theme-primary), 0.1);
+  color: rgb(var(--v-theme-primary));
+}
+
+/*
+  ℹ️ This style is required when you don't provide any transition to horizontal nav items via themeConfig `themeConfig.horizontalNav.transition`
+  Also, you have to disable it if you are using transition
+*/
+
+%horizontal-nav-popper-content-hidden {
+
+
+
+
+
+
+}
+
+/*
+  ℹ️ This style is required when you don't provide any transition to horizontal nav items via themeConfig `themeConfig.horizontalNav.transition`
+  Also, you have to disable it if you are using transition
+*/
+
+%horizontal-nav-popper-content-visible {
+
+
+
+
+
+
+}
+
+
+%horizontal-nav-item-icon {
+  font-size: variables.$horizontal-nav-items-icon-size;
+  margin-inline-end: variables.$horizontal-nav-items-icon-margin-inline-end;
+}
+
+
+%horizontal-nav-subitem {
+  min-inline-size: 12rem;
+
+  .nav-item-title {
+    margin-inline-end: 1rem;
+  }
+}
+
+
+%third-level-nav-item-icon {
+  font-size: variables.$horizontal-nav-third-level-icon-size;
+  margin-inline: calc((variables.$horizontal-nav-items-icon-size - variables.$horizontal-nav-third-level-icon-size) / 2) 0.75rem;
+
+  /*
+    ℹ️ `margin-inline` will be (normal icon font-size - small icon font-size) / 2
+    (1.5rem - 0.9rem) / 2 => 0.6rem / 2 => 0.3rem
+  */
+}
+
+
+%horizontal-nav-item-title {
+  margin-inline-end: 0.3rem;
+  white-space: nowrap;
+}
+
+
+%horizontal-nav-popper-content {
+  @include mixins.elevation(4);
+
+  border-radius: 6px;
+  padding-block: 0.3rem;
+
+  > div {
+    @extend %style-scroll-bar;
+  }
+}

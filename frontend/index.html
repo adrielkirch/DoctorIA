@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="/favicon.ico" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DoctorIA - Vuetify Vuejs Admin Template</title>
+  <link rel="stylesheet" type="text/css" href="/loader.css" />
+</head>
+
+<body>
+  <div id="app">
+    <div id="loading-bg">
+      <div class="loading-logo">
+        <!-- DoctorIA Logo -->
+        <img src="/images/logo.svg" alt="DoctorIA Logo" />
+      </div>
+      <div class=" loading">
+        <div class="effect-1 effects"></div>
+        <div class="effect-2 effects"></div>
+        <div class="effect-3 effects"></div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="/src/main.ts"></script>
+  <script>
+    const loaderColor = localStorage.getItem('doctoria-initial-loader-bg') || '#FFFFFF'
+    const primaryColor = localStorage.getItem('doctoria-initial-loader-color') || '#10A37F'
+
+    if (loaderColor)
+      document.documentElement.style.setProperty('--initial-loader-bg', loaderColor)
+
+    if (primaryColor)
+      document.documentElement.style.setProperty('--initial-loader-color', primaryColor)
+  </script>
+  <script>
+    const loaderLogo = document.querySelector('#loading-bg .loading-logo img')
+
+    const syncLoaderLogo = () => {
+      const themeCookie = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('doctoria-theme='))
+      const theme = themeCookie ? decodeURIComponent(themeCookie.split('=')[1]) : 'system'
+      const systemDark = typeof window.matchMedia === 'function'
+        && window.matchMedia('(prefers-color-scheme: dark)').matches
+
+      const isDark = theme === 'dark' || (theme === 'system' && systemDark)
+
+      if (loaderLogo)
+        loaderLogo.src = isDark ? '/logo-dark.svg' : '/images/logo.svg'
+    }
+
+    syncLoaderLogo()
+
+
+    if (typeof window.matchMedia === 'function') {
+      const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)')
+
+      if (darkModeQuery.addEventListener)
+        darkModeQuery.addEventListener('change', syncLoaderLogo)
+      else if (darkModeQuery.addListener)
+        darkModeQuery.addListener(syncLoaderLogo)
+    }
+  </script>
+</body>
+
+</html>

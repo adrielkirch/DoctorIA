@@ -1,0 +1,17 @@
+services:
+  vue-project:
+    container_name: vue-project_prod
+    build:
+      context: .
+      dockerfile: prod.Dockerfile
+      # Same private-repo auth as dev: GITHUB_TOKEN from the shell env or `.env`
+      # is forwarded as the `github_token` secret (or build with `--ssh default`).
+      secrets:
+        - github_token
+    image: vue-app
+    ports:
+      - 8080:80
+
+secrets:
+  github_token:
+    environment: GITHUB_TOKEN

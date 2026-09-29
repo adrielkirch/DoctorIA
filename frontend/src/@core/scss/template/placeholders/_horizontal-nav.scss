@@ -1,0 +1,33 @@
+@use "vuetify/lib/styles/tools/elevation" as elevation;
+
+
+%horizontal-nav-item {
+  padding-block: 0.625rem;
+  padding-inline: 1rem;
+}
+
+
+%horizontal-nav-sub-nav-link-active {
+  .nav-item-icon {
+    color: rgb(var(--v-theme-primary)) !important;
+  }
+}
+
+%horizontal-nav-popper-content {
+  @include elevation.elevation(8);
+
+  padding-block: 0.5rem;
+}
+
+
+%horizontal-nav-item-title {
+  margin-inline-end: 0.5rem;
+}
+
+%horizontal-nav-top-level-item {
+  border-radius: 0.375rem;
+}
+
+%third-level-nav-item-icon {
+  margin-inline: 0 0.5rem;
+}

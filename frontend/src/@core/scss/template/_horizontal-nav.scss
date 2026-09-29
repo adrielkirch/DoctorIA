@@ -1,0 +1,90 @@
+@use "@core/scss/template/placeholders" as *;
+
+.layout-horizontal-nav {
+  .nav-popper.show-content.nav-group:not(.active) {
+    > :first-child> {
+      .nav-group-label {
+        color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+      }
+    }
+
+    &:hover {
+      > .popper-triggerer > .nav-group-label::before {
+        opacity: var(--v-hover-opacity);
+      }
+    }
+  }
+
+  .popper-content {
+    .nav-link,
+    .nav-group {
+      &.sub-item {
+        /* stylelint-disable-next-line no-descending-specificity */
+        .nav-group-label,
+        a {
+          block-size: 2.375rem;
+          padding-block: 8px;
+        }
+
+        &:not(:last-child) {
+          /* stylelint-disable-next-line no-descending-specificity */
+          .nav-group-label,
+          a {
+            margin-block-end: 2px;
+          }
+        }
+      }
+    }
+
+    .nav-group.active.children-at-end.sub-item {
+      > :first-child> {
+        .nav-group-label {
+          svg,
+          .nav-item-title {
+            color: rgba(var(--v-theme-on-surface), var(--v-high-emphasis-opacity));
+          }
+        }
+      }
+    }
+
+    .nav-group.nav-group.children-at-end.sub-item {
+      .popper-content {
+        .nav-group.children-at-end.show-content,
+        .nav-group.active {
+          /* stylelint-disable-next-line no-descending-specificity */
+          .popper-triggerer {
+            /* stylelint-disable-next-line no-descending-specificity */
+            .nav-group-label {
+              /* stylelint-disable-next-line no-descending-specificity */
+              .nav-item-icon {
+                color: rgb(var(--v-theme-surface)) !important;
+                transform: scale(1.5);
+
+                /* stylelint-disable-next-line no-descending-specificity */
+                &::before {
+                  position: absolute;
+                  border-radius: 6px;
+                  background-color: rgb(var(--v-theme-on-surface), var(--v-disabled-opacity));
+                  block-size: 100%;
+                  content: "";
+                  inline-size: 100%;
+                  inset: 0;
+                  transform: scale(-0.667);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    /* stylelint-disable-next-line no-descending-specificity */
+    .popper-content {
+      .nav-link {
+        .router-link-exact-active {
+          @extend %nav-link-nested-active;
+        }
+      }
+    }
+  }
+}

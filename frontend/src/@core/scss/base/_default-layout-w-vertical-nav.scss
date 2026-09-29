@@ -1,0 +1,103 @@
+@use "@configured-variables" as variables;
+@use "@core/scss/base/placeholders" as *;
+@use "@core/scss/template/placeholders" as *;
+@use "misc";
+@use "@core/scss/base/mixins";
+
+$header: ".layout-navbar";
+
+@if variables.$layout-vertical-nav-navbar-is-contained {
+  $header: ".layout-navbar .navbar-content-container";
+}
+
+.layout-wrapper.layout-nav-type-vertical {
+
+
+  @if variables.$vertical-nav-navbar-style == "elevated" {
+
+    #{$header} {
+      transition: padding 0.2s ease, background-color 0.18s ease;
+    }
+
+
+    @if variables.$layout-vertical-nav-navbar-is-contained {
+      #{$header} {
+        border-radius: 0 0 variables.$default-layout-with-vertical-nav-navbar-footer-roundness variables.$default-layout-with-vertical-nav-navbar-footer-roundness;
+      }
+    }
+
+
+    @at-root {
+      /* ℹ️ This html selector with not selector is required when:
+        dialog is opened and window don't have any scroll. This removes window-scrolled class from layout and our style broke
+    */
+      html.v-overlay-scroll-blocked:not([style*="--v-body-scroll-y: 0px;"]) .layout-navbar-sticky,
+      &.window-scrolled.layout-navbar-sticky {
+
+        #{$header} {
+          @extend %default-layout-vertical-nav-scrolled-sticky-elevated-nav;
+          @extend %default-layout-vertical-nav-floating-navbar-and-sticky-elevated-navbar-scrolled;
+        }
+
+        .navbar-blur#{$header} {
+          @extend %blurry-bg;
+        }
+      }
+    }
+  }
+
+
+  @else if  variables.$vertical-nav-navbar-style == "floating" {
+
+    .layout-navbar {
+      &.navbar-blur {
+        @extend %default-layout-vertical-nav-floating-navbar-overlay;
+      }
+    }
+
+    &:not(.layout-navbar-sticky) {
+      #{$header} {
+        margin-block-start: variables.$vertical-nav-floating-navbar-top;
+      }
+    }
+
+    #{$header} {
+      @if variables.$layout-vertical-nav-navbar-is-contained {
+        border-radius: variables.$default-layout-with-vertical-nav-navbar-footer-roundness;
+      }
+
+      background-color: rgb(var(--v-theme-surface));
+
+      @extend %default-layout-vertical-nav-floating-navbar-and-sticky-elevated-navbar-scrolled;
+    }
+
+    .navbar-blur#{$header} {
+      @extend %blurry-bg;
+    }
+  }
+
+
+
+
+  .layout-footer {
+    $ele-layout-footer: &;
+
+    .footer-content-container {
+      border-radius: variables.$default-layout-with-vertical-nav-navbar-footer-roundness variables.$default-layout-with-vertical-nav-navbar-footer-roundness 0 0;
+
+
+      @at-root {
+
+        .layout-footer-sticky#{$ele-layout-footer} {
+          .footer-content-container {
+            background-color: rgb(var(--v-theme-surface));
+            padding-block: 0;
+            padding-inline: 1.2rem;
+
+            @include mixins.elevation(3);
+          }
+        }
+      }
+    }
+  }
+}

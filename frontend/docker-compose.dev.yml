@@ -1,0 +1,43 @@
+services:
+  vue-project:
+    container_name: vue-project_dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+      # credentials: GITHUB_TOKEN in the shell env or in `.env` (git-ignored) is forwarded
+      # as the `github_token` secret. On hosts where ssh-agent is running you can instead
+      # build with `--ssh default` (or uncomment below).
+      # `docker compose build` accepts only `--ssh` — there is no `--secret` flag.
+      # ssh:
+      #   - default
+      secrets:
+        - github_token
+    environment:
+      # ℹ️ Polling de arquivos: LIGADO por padrão, mas com intervalo de 1s (vite.config.ts).
+      # Por que: o projeto roda em bind mount (ex.: C:\... no Docker Desktop/Windows), e
+      # nesse caso o inotify não entrega eventos do host — sem polling o hot reload fica
+      # cego (editar um arquivo não atualiza nada no browser).
+      # Por que o intervalo importa: com polling, o chokidar re-`stat`a TODOS os arquivos
+      # vigiados a cada tick. No default do chokidar (100ms) isso satura o event loop e o
+      # compile do Sass salta de ~4s para minutos — o `index.scss` do main.ts nunca resolve
+      # e o app fica preso no `#loading-bg` ("loading infinito"), também derrubando o
+      # Playwright. Com 1s + dirs pesados ignorados (dist/docs/.specify), tudo volta ao normal.
+      # Em host com eventos nativos confiáveis (Linux/macOS), pode desligar:
+      #   VITE_WATCH_USE_POLLING=false npm run docker:dev
+      - VITE_WATCH_USE_POLLING=${VITE_WATCH_USE_POLLING:-true}
+      - VITE_WATCH_POLL_INTERVAL=${VITE_WATCH_POLL_INTERVAL:-1000}
+    volumes:
+      - .:/app
+      # Named volume (not anonymous) so stale deps are easy to spot and remove:
+      # after changing package.json -> npm run docker:dev -- --reset
+      - node_modules:/app/node_modules
+    restart: always
+    ports:
+      - 5173:5173
+
+volumes:
+  node_modules:
+
+secrets:
+  github_token:
+    environment: GITHUB_TOKEN
