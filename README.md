@@ -1,99 +1,198 @@
-# 🩺 PulseAI
+# Doctor AI — Open Source Product
 
-### The Open-Source AI Engine for Modern Healthcare
-
-*Real-time patient data processing, diagnostic assistance, and clinical workflow automation.*
-
-[WhatsApp Research Group](https://chat.whatsapp.com/E7XKMsiFhaDBcKTIwffOmZ) 
----
-
-## 🌟 Overview
-
-**PulseAI** is a community-driven, privacy-focused engine designed to bridge the gap between clinical data pipelines and modern artificial intelligence.
-
-Healthcare software today is frequently fragmented, vendor-locked, and legacy-bound. PulseAI provides an open, modular infrastructure that enables health tech engineers, researchers, and clinicians to run **real-time telemetry processing**, **multi-modal AI diagnostic assistance**, and **automated EHR workflows**—locally or in secure cloud environments.
-
-> 🏣 **Star us on GitHub to support the open health tech movement!**
+A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a ChatGPT-like AI conversational interface, human-in-the-loop fallback escalation, social media integration capabilities, and robust multi-language support.
 
 ---
 
-## ✨ Key Features
+## 🛠️ Tech Stack
 
-* ⚡ **Real-Time Data Streaming:** Ingest patient vitals, telemetry, and ICU device streams with sub-second latency.
-* 🧠 **Diagnostic Co-Pilot:** Plug-and-play support for domain-adapted LLMs (e.g., Med-Llama, BioMistral) and Vision Transformers for radiology/DICOM analysis.
-* 🔄 **Interoperability Standardized:** Out-of-the-box connectors for **HL7 v2/v3**, **FHIR R4**, and **DICOM** imaging standards.
-* ⚙️ **Clinical Workflow Automation:** Automate chart summaries, ICD-10/11 coding suggestions, and triage prioritization.
-* 🔒 **Local-First & Privacy Compliant:** Zero-knowledge data processing mode designed to meet **HIPAA**, **GDPR**, and **LGPD** compliance requirements.
-* 🔌 **Agnostic LLM Orchestration:** Run models locally via Ollama/vLLM, or connect to private OpenAI/Anthropic enterprise endpoints.
+### **Frontend**
+
+* **Vue 3** + **TypeScript** + **Composition API**
+* **Vuetify 3** (UI Component Library)
+* **Pinia** (State Management)
+* **Vue Router** (Routing with short URL support)
+* **Vite** (Build tool & dev server)
+
+### **Backend**
+
+* **NestJS** (Node.js framework built with TypeScript)
+* **TypeORM** / **Prisma** (ORM for PostgreSQL interaction)
+* **JWT Authentication** (Secure API endpoints & sessions)
+* **WebSockets / Gateway** (Real-time chat & human fallback messaging)
+
+### **Database & Infrastructure**
+
+* **PostgreSQL** (Relational database)
+* **Docker & Docker Compose** (Containerized development & production deployment)
+* **Nginx** (Reverse proxy for production)
 
 ---
 
-## 🏗️ Architecture
+## 📁 Project Structure
+
+```text
+doctor-ai-open-source/
+├── frontend/             # Vue 3 client application
+│   ├── src/
+│   │   ├── assets/       # Static assets, styles, and i18n legal html docs
+│   │   ├── components/   # Reusable UI components & dialogs
+│   │   ├── views/        # Page views (Chat, Settings, Admin, etc.)
+│   │   └── router/       # Vue Router configuration & feature flags
+│   ├── vite.config.ts
+│   └── package.json
+│
+├── backend/              # NestJS / Node.js API server
+│   ├── src/
+│   │   ├── auth/         # Authentication & Authorization modules
+│   │   ├── chat/         # Chat, AI connectors & WebSockets
+│   │   ├── users/        # User management & roles
+│   │   └── main.ts
+│   ├── Dockerfile
+│   └── package.json
+│
+├── docker-compose.dev.yml   # Local development setup with hot-reload
+├── docker-compose.prod.yml  # Production deployment configuration
+└── README.md
 
 ```
-                      ┌─────────────────────────────────────────┐
-                      │    Clinical Data Sources (EHR / Vitals) │
-                      └────────────────────┬────────────────────┘
-                                           │
-                                  [ HL7 / FHIR Stream ]
-                                           │
-                                           ▼
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                              PulseAI Core Node                               │
-│                                                                              │
-│  ┌─────────────────────────┐   ┌───────────────────┐   ┌──────────────────┐  │
-│  │ Telemetry Engine (vLLM) │   │ Privacy & Anonym. │   │ FHIR Transformer │  │
-│  └────────────┬────────────┘   └─────────┬─────────┘   └────────┬─────────┘  │
-└───────────────┼──────────────────────────┼──────────────────────┼────────────┘
-                │                          │                      │
-                ▼                          ▼                      ▼
-┌──────────────────────────────────────────────────────────────────────────────┐
-│                             Inference & Workflows                            │
-│                                                                              │
-│   • Multi-Modal Diagnostic Assistance   • Real-Time Alert Triggering         │
-│   • Automated Clinical Notes / Triage   • Structured FHIR Export             │
-└──────────────────────────────────────────────────────────────────────────────┘
+
+---
+
+## 🚀 Getting Started (Local Development)
+
+### **Prerequisites**
+
+* [Node.js](https://nodejs.org/) (v20+ recommended)
+* **npm** (This project uses npm exclusively; avoid yarn/pnpm)
+* [Docker & Docker Compose](https://www.docker.com/) (Recommended for running Postgres and services seamlessly)
+
+### **1. Environment Configuration**
+
+Clone the repository and set up your environment variables:
+
+```bash
+git clone https://github.com/your-username/doctor-ai-open-source.git
+cd doctor-ai-open-source
+
+```
+
+Create a `.env` file at the root (or copy from `.env.example`) and configure your database and API tokens:
+
+```env
+PORT=3000
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=postgres
+DB_NAME=doctor_ai_db
+JWT_SECRET=your_super_secret_jwt_key
+
+```
+
+---
+
+### **Option A: Running with Docker (Recommended)**
+
+The easiest way to spin up the Frontend, Backend, and PostgreSQL database simultaneously with hot-reloading enabled is via Docker Compose:
+
+```bash
+# Start development environment
+npm run docker:dev
+# Or directly:
+docker compose -f docker-compose.dev.yml up --build
+
+```
+
+* **Frontend App:** [http://localhost:5173](http://localhost:5173)
+* **Backend API:** [http://localhost:3000](http://localhost:3000)
+
+To check logs or stop the containers:
+
+```bash
+npm run docker:dev:logs
+npm run docker:dev:down
+
+```
+
+---
+
+### **Option B: Running Manually (Without Docker)**
+
+#### **1. Database Setup**
+
+Ensure your local PostgreSQL instance is running and create a database named `doctor_ai_db`.
+
+#### **2. Backend Setup (NestJS)**
+
+```bash
+cd backend
+npm install
+npm run start:dev
+
+```
+
+The API server will run on `http://localhost:3000`.
+
+#### **3. Frontend Setup (Vue 3)**
+
+Open a separate terminal window:
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+```
+
+The frontend dev server will run on `http://localhost:5173`.
+
+---
+
+## 📦 Production Deployment
+
+To build and run the complete ecosystem in production mode using Docker and Nginx:
+
+```bash
+docker compose -f docker-compose.prod.yml up --build
+
+```
+
+* The production web client will be served at [http://localhost:8080](http://localhost:8080).
+
+---
+
+## ⚙ Key Features & Configuration
+
+* **ChatGPT-like Interface:** Complete conversational UI layout featuring a navigation drawer and active thread pane.
+* **Human Fallback:** Seamless protocol enabling automated bots to escalate active user threads to live human support agents.
+* **Social Media Integration:** Built-in connection capabilities for cross-platform sharing and multi-channel messaging (WhatsApp, Instagram, Twitter, etc.).
+* **Feature Flags:** Easily toggle features on/off without writing code by configuring the `VITE_DISABLE_FEATURE_FLAGS` environment variable.
+* **Multi-language Support:** Full i18n implementation covering English, Portuguese, French, Arabic (RTL support), and German.
+
+---
+
+## 📚 Documentation
+
+Detailed guides and architecture notes are available inside the [`/docs`](https://www.google.com/search?q=docs/) folder:
+
+* **[Main Documentation Index](https://www.google.com/search?q=docs/README.md)**
+* **[Implementation Guides](https://www.google.com/search?q=docs/implementation/)**
+* **[Integration Guides](https://www.google.com/search?q=docs/integrations/)**
 
 ---
 
 ## 🤝 Contributing
 
-We warmly welcome developers, bioinformaticians, medical practitioners, and UI designers!
+We welcome contributions from the community!
 
-Whether you want to write code, improve documentation, or validate medical prompts:
-
-1. Fork the Repository
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please review our [Contributing Guide](https://www.google.com/search?q=CONTRIBUTING.md&utm_source=gemini) and [Code of Conduct](https://www.google.com/search?q=CODE_OF_CONDUCT.md&utm_source=gemini) before submitting code.
-
----
-
-## 💬 Community & Support
-
-* **Discord:** Chat in real-time with the core maintainers and community on [Discord](https://www.google.com/url?sa=E&source=gmail&q=https://discord.gg/pulseai).
-* **GitHub Discussions:** Ask questions, share ideas, or show off your deployments in [Discussions](https://www.google.com/search?q=https://github.com/your-org/pulseai/discussions&utm_source=gemini).
-* **Twitter / X:** Follow [@PulseAI_Org](https://www.google.com/search?q=https://x.com/pulseai_org&utm_source=gemini) for major announcements.
-
----
-
-## ⭐️ Star History
-
-If you believe healthcare technology should be open, accessible, and community-driven, give us a star! 🌟
+1. Review the [`/docs`](https://www.google.com/search?q=docs/) folder before starting new implementations.
+2. Follow established code patterns in frontend components and NestJS modules.
+3. Write clean, modular TypeScript code with appropriate tests.
+4. Open an issue or submit a pull request.
 
 ---
 
 ## 📄 License
 
-PulseAI is released under the [Apache 2.0 License](https://www.google.com/search?q=LICENSE&utm_source=gemini).
-
----
-
-<sub>Built with ❤️ by the open health tech community.</sub>
-
-```
-
-```
+This project is open-source and licensed under the **MIT License**.

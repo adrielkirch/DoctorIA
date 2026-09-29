@@ -1,0 +1,119 @@
+
+@use "@layouts/styles/rtl";
+@use "@layouts/styles/placeholders";
+@use "@layouts/styles/mixins";
+@use "@configured-variables" as variables;
+
+html,
+body {
+  min-block-size: 100%;
+}
+
+.layout-page-content {
+  @include mixins.boxed-content(true);
+
+  flex-grow: 1;
+
+
+  padding-block: 1.5rem;
+}
+
+.layout-footer {
+  .footer-content-container {
+    block-size: variables.$layout-vertical-nav-footer-height;
+  }
+
+  .layout-footer-sticky & {
+    position: sticky;
+    inset-block-end: 0;
+    will-change: transform;
+  }
+
+  .layout-footer-hidden & {
+    display: none;
+  }
+}
+
+.layout-vertical-nav.compact-nav-enabled {
+  .nav-items {
+    padding-inline: 8px;
+  }
+
+
+
+
+
+  .nav-items > .nav-link > a.router-link-exact-active,
+  .nav-items > .nav-link > a.router-link-active {
+    background-color: var(--compact-nav-active-bg, rgba(16, 185, 129, 0.09)) !important;
+    box-shadow: none !important;
+    color: rgb(var(--v-theme-primary)) !important;
+    font-weight: 600 !important;
+    &::before {
+      background: transparent !important;
+      opacity: 0 !important;
+    }
+  }
+
+  .nav-group.active > .nav-group-label {
+    background-color: transparent !important;
+    color: rgb(var(--v-theme-primary)) !important;
+    font-weight: 600 !important;
+
+    &::before {
+      background: transparent !important;
+      opacity: 0 !important;
+    }
+  }
+
+
+
+
+
+
+
+
+
+  .nav-group-children {
+    > .nav-link > a,
+    > .nav-group > .nav-group-label {
+      padding-inline-start: calc(var(--compact-nav-item-padding-x) + 1rem) !important;
+    }
+
+    .nav-link > a.router-link-exact-active,
+    .nav-link > a.router-link-active {
+      background-color: var(--compact-nav-active-bg, rgba(16, 185, 129, 0.09)) !important;
+      color: rgb(var(--v-theme-primary)) !important;
+      font-weight: 600 !important;
+
+      &::before {
+        background: transparent !important;
+        opacity: 0 !important;
+      }
+    }
+  }
+
+  .nav-link,
+  .nav-group,
+  .nav-section-title {
+    margin-block: 2px;
+  }
+
+  .nav-item-icon {
+    font-size: var(--compact-nav-icon-size);
+    margin-inline-end: 10px;
+  }
+}
+
+.app-bar-search-dialog.compact-nav-enabled {
+  .app-bar-search-suggestion,
+  .v-list-item {
+    align-items: center;
+    min-block-size: var(--compact-nav-row-height);
+    padding-inline: var(--compact-nav-item-padding-x);
+  }
+
+  .v-list-item__prepend {
+    min-inline-size: calc(var(--compact-nav-icon-size) + 8px);
+  }
+}

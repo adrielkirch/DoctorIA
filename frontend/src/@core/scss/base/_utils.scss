@@ -1,0 +1,90 @@
+@use "sass:map";
+@use "sass:list";
+@use "@configured-variables" as variables;
+
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map.get($map, $key);
+  }
+
+  @return $map;
+}
+
+@function map-deep-set($map, $keys, $value) {
+  $maps: ($map,);
+  $result: null;
+
+
+
+  @if type-of(nth($keys, -1)) == "map" {
+    @warn "The last key you specified is a map; it will be overrided with `#{$value}`.";
+  }
+
+
+
+  @if length($keys) == 1 {
+    @return map-merge($map, ($keys: $value));
+  }
+
+
+
+
+  @for $i from 1 through length($keys) - 1 {
+    $current-key: list.nth($keys, $i);
+    $current-map: list.nth($maps, -1);
+    $current-get: map.get($current-map, $current-key);
+
+    @if not $current-get {
+      @error "Key `#{$key}` doesn't exist at current level in map.";
+    }
+
+    $maps: list.append($maps, $current-get);
+  }
+
+
+
+  @for $i from length($maps) through 1 {
+    $current-map: list.nth($maps, $i);
+    $current-key: list.nth($keys, $i);
+    $current-val: if($i == list.length($maps), $value, $result);
+    $result: map.map-merge($current-map, ($current-key: $current-val));
+  }
+
+
+  @return $result;
+}
+
+
+@each $name, $size in variables.$font-sizes {
+  .text-#{$name} {
+    font-size: $size;
+    line-height: map.get(variables.$font-line-height, $name);
+  }
+}
+
+
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+@each $name, $size in variables.$gap {
+  .gap-#{$name} {
+    gap: $size;
+  }
+
+  .gap-x-#{$name} {
+    column-gap: $size;
+  }
+
+  .gap-y-#{$name} {
+    row-gap: $size;
+  }
+}
+
+.list-none {
+  list-style-type: none;
+}

@@ -1,0 +1,18 @@
+@use "vuetify/lib/styles/tools/elevation" as elevation;
+
+.layout-wrapper.layout-nav-type-horizontal {
+  .layout-navbar {
+    .leading-normal {
+      font-size: 1.75rem;
+    }
+  }
+
+
+  .layout-footer {
+    @at-root {
+      .layout-footer-sticky#{&} {
+        @include elevation.elevation(8);
+      }
+    }
+  }
+}

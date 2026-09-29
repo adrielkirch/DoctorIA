@@ -1,0 +1,48 @@
+@use "sass:map";
+
+
+@use "vertical-nav";
+@use "horizontal-nav";
+@use "default-layout";
+@use "default-layout-w-vertical-nav";
+@use "default-layout-w-horizontal-nav";
+
+
+@use "layouts";
+
+
+@use "skins";
+
+
+@use "components";
+
+
+@use "utilities";
+
+
+@use "route-transitions";
+
+
+@use "misc";
+
+
+@use "dark";
+
+
+@use "libs/perfect-scrollbar";
+
+a {
+  color: rgb(var(--v-theme-primary));
+  text-decoration: none;
+}
+
+
+p {
+  margin-block-end: 1rem;
+}
+
+
+svg.iconify {
+  block-size: 1em;
+  inline-size: 1em;
+}

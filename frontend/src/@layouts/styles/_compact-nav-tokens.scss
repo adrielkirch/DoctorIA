@@ -1,0 +1,73 @@
+/* Compact navigation/search tokens shared across layout surfaces. */
+:root {
+  /* ── AI/SaaS 2026 "V2" — Spatial Geometry (grid matemático 4/8px) ─────────
+     Sidebar ≤ 260px, menu items ≤ 32px, pills de 8px, micro-labels 11px. */
+  --compact-nav-sidebar-width: 260px;
+  --compact-nav-row-height: 32px;
+  --compact-nav-icon-size: 18px;
+  --compact-nav-text-size: 13px;
+  --compact-nav-item-padding-x: 12px;
+  --compact-nav-item-radius: 8px;
+  --compact-nav-group-gap: 4px;
+  --compact-nav-focus-outline-width: 2px;
+
+  /* Micro-typography dos títulos de seção (uppercase · 11px · ls 0.05em). */
+  --compact-nav-section-title-color: #64748b; /* Slate 500 */
+
+  /* Estado ativo tipo "pill": fundo verde suave + texto/ícone primary bold. */
+  --compact-nav-active-bg: rgba(16, 185, 129, 0.09);
+}
+
+/* Dense envelope at lg-and-down (FR-015) is driven by layout breakpoint classes. */
+.layout-vertical-nav.compact-nav-dense,
+.app-bar-search-dialog.compact-nav-dense {
+  --compact-nav-row-height: 34px;
+  --compact-nav-item-padding-x: 10px;
+}
+
+/* Dark mode: o slate 500 do light vira cinza claro para manter contraste. */
+.v-theme--dark {
+  --compact-nav-section-title-color: #a1a1aa;
+  --compact-nav-active-bg: rgba(16, 185, 129, 0.16);
+}
+
+
+
+
+
+
+
+.layout-nav-type-vertical .layout-vertical-nav.compact-nav-enabled {
+  .nav-link > a,
+  .nav-group > .nav-group-label {
+    block-size: var(--compact-nav-row-height);
+    border-radius: var(--compact-nav-item-radius);
+    font-size: var(--compact-nav-text-size);
+    margin-block: 0;
+    margin-block-end: 0;
+    margin-inline: 0;
+    min-block-size: var(--compact-nav-row-height);
+    padding-block: 0;
+    padding-inline: var(--compact-nav-item-padding-x);
+  }
+
+  .nav-item-icon {
+    font-size: var(--compact-nav-icon-size);
+    min-inline-size: var(--compact-nav-icon-size);
+  }
+
+  .nav-group-children,
+  .nav-items {
+    row-gap: var(--compact-nav-group-gap);
+  }
+}
+
+.app-bar-search-dialog.compact-nav-enabled {
+  .app-bar-search-suggestion,
+  .v-list-item {
+    border-radius: var(--compact-nav-item-radius);
+    font-size: var(--compact-nav-text-size);
+    min-block-size: var(--compact-nav-row-height);
+  }
+}
+

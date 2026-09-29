@@ -1,0 +1,53 @@
+
+@use "@configured-variables" as variables;
+
+%boxed-content {
+  @at-root #{&}-spacing {
+
+    padding-inline: 1.5rem;
+  }
+
+  inline-size: 100%;
+  margin-inline: auto;
+  max-inline-size: variables.$layout-boxed-content-width;
+}
+
+%layout-navbar-hidden {
+  display: none;
+}
+
+
+%layout-navbar-sticky {
+  position: sticky;
+  inset-block-start: 0;
+
+
+
+}
+
+%style-scroll-bar {
+  /* width */
+
+  &::-webkit-scrollbar {
+    background: rgb(var(--v-theme-surface));
+    block-size: 8px;
+    border-end-end-radius: 14px;
+    border-start-end-radius: 14px;
+    inline-size: 4px;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.5rem;
+    background: rgb(var(--v-theme-perfect-scrollbar-thumb));
+  }
+
+  &::-webkit-scrollbar-corner {
+    display: none;
+  }
+}

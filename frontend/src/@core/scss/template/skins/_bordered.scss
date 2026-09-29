@@ -1,0 +1,97 @@
+@use "sass:map";
+@use "@core/scss/base/mixins";
+@use "@configured-variables" as variables;
+
+$header: ".layout-navbar";
+
+@if variables.$layout-vertical-nav-navbar-is-contained {
+  $header: ".layout-navbar .navbar-content-container";
+}
+
+.skin--bordered {
+
+  .layout-nav-type-vertical {
+
+    .layout-vertical-nav {
+      box-shadow: none !important;
+
+
+      &:not(.overlay-nav) .nav-header::after {
+        border: thin solid rgba(var(--v-border-color), var(--v-border-opacity));
+        clip-path: circle(71% at 0% 50%);
+      }
+    }
+  }
+
+
+
+
+  @if variables.$layout-vertical-nav-navbar-is-contained {
+    @include mixins.bordered-skin(".layout-nav-type-vertical #{$header}");
+    .layout-nav-type-vertical.window-scrolled #{$header} {
+      border-block-start: 1px solid rgba(var(--v-border-color), var(--v-border-opacity)) !important;
+    }
+  }
+  /* stylelint-disable-next-line @stylistic/indentation */
+ @else {
+    @include mixins.bordered-skin(".layout-nav-type-vertical #{$header}", "border-bottom");
+  }
+
+
+  @include mixins.bordered-skin(".v-dialog-close-btn");
+
+
+  /* stylelint-disable-next-line no-descending-specificity */
+  .layout-vertical-nav {
+    box-shadow: none;
+  }
+
+  .v-expansion-panels.expansion-panels-width-border {
+    .v-expansion-panel__shadow {
+      box-shadow: none !important;
+    }
+
+    .v-expansion-panel {
+      border: none !important;
+
+      &:not(:last-child) {
+        margin-block-end: -1px;
+      }
+
+      &::after {
+        content: "";
+      }
+    }
+  }
+
+
+  .v-select__content,
+  .v-combobox__content,
+  .v-autocomplete__content {
+    box-shadow: none;
+  }
+
+  .flatpickr-calendar {
+    border: 1px solid rgba(var(--v-border-color), var(--v-border-opacity));
+    box-shadow: none !important;
+  }
+
+
+  .fc .fc-popover {
+    box-shadow: none;
+  }
+
+
+  .v-navigation-drawer:not(.app-customizer) {
+    box-shadow: none;
+  }
+
+
+  .v-snackbar--variant-elevated {
+    box-shadow: none;
+  }
+
+  .shepherd-element {
+    box-shadow: none;
+  }
+}
