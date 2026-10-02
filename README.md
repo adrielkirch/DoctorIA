@@ -1,7 +1,3 @@
-Here is an upgraded, production-ready `README.md` tailored for your open-source medical reasoning platform. It incorporates all **10 clinical domains**, explicit **open-source tooling**, and the advanced **fabric of reasoning, internet search, and RAG ingestion capabilities**.
-
----
-
 # Doctor AI — Open Source Clinical Reasoning Platform
 
 A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a clinical-grade conversational interface, multi-agent reasoning graphs, human-in-the-loop fallback escalation, and native DICOM/pathology imaging capabilities—**100% open-source and self-hostable**.
