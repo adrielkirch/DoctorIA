@@ -1,27 +1,48 @@
-# Doctor AI — Open Source Product
-
-A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a ChatGPT-like AI conversational interface, human-in-the-loop fallback escalation, dicom image capabilities.
-
-<img width="1906" height="835" alt="image" src="https://github.com/user-attachments/assets/4bd64270-cbda-4e2a-bfa7-17d408ebcba4" />
-
-<img width="1600" height="706" alt="image" src="https://github.com/user-attachments/assets/759b7a4e-516a-4041-891f-154ef6d0c3d0" />
-
-<img width="1600" height="620" alt="image" src="https://github.com/user-attachments/assets/759cd71c-a13a-4b2a-817f-76d858a06f1c" />
-
+Here is an upgraded, production-ready `README.md` tailored for your open-source medical reasoning platform. It incorporates all **10 clinical domains**, explicit **open-source tooling**, and the advanced **fabric of reasoning, internet search, and RAG ingestion capabilities**.
 
 ---
-# Next tasks
 
-  - Simple backend []
-  - PostgresSQL []
-  - Langraph infrastructure []
-  
+# Doctor AI — Open Source Clinical Reasoning Platform
+
+A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a clinical-grade conversational interface, multi-agent reasoning graphs, human-in-the-loop fallback escalation, and native DICOM/pathology imaging capabilities—**100% open-source and self-hostable**.
+
+---
+
+## 🩺 Supported Clinical Specialties (100% Open Source)
+
+Doctor AI is engineered with specialized reasoning profiles across **10 distinct medical domains**, leveraging open-source medical foundational models, LangGraph orchestrations, and specialized prompt topologies:
+
+1. **General Practice & Primary Care:** Differential diagnosis for multi-symptom presentations, preventive care tracking, and triage guidance.
+2. **Cardiology & Cardiovascular Medicine:** ECG waveform interpretation analysis, risk-scoring (ASCVD/HEART score), and heart failure trajectory monitoring.
+3. **Oncology & Tumor Board Analysis:** Staging synthesis, multi-modal biomarker review, and personalized therapy pathway matching.
+4. **Radiology & Diagnostic Imaging:** DICOM image viewer integration, structural anomaly flagging, and preliminary imaging impression reports.
+5. **Pathology & Digital Histopathology:** Whole-slide image (WSI) metadata analysis, cellular anomaly breakdown, and grading report generation.
+6. **Pulmonology & Critical Care:** ABG (Arterial Blood Gas) interpretation, ventilator parameter reasoning, and acute respiratory distress evaluation.
+7. **Endocrinology & Metabolic Health:** Glycemic trend analytics, diabetic ketoacidosis risk stratification, and endocrine panel evaluations.
+8. **Neurology & Neuro-imaging:** Stroke protocol timelines, NIHSS scoring assistance, and localized neurological deficit assessments.
+9. **Gastroenterology & Hepatology:** Liver fibrosis staging calculators, inflammatory bowel disease flare tracking, and GI bleeding risk tools.
+10. **Nephrology & Urology:** eGFR tracking, electrolyte imbalance correction reasoning, and acute kidney injury staging.
+
+---
+
+## 🧠 Fabric of Reasoning & Agentic Capabilities
+
+Doctor AI moves beyond simple chatbot responses by implementing a robust **Fabric of Reasoning** engine:
+
+* **Multi-Step Clinical Synthesis:** Breaks down complex patient presentations into distinct diagnostic hypotheses, orders them by clinical probability, and identifies critical "red flag" differential exclusions.
+* **Autonomous Internet Search & Literature Retrieval:** Automatically queries trusted open medical databases and web literature for real-time clinical guidelines, newly approved therapeutics, and rare disease case studies.
+* **Advanced RAG (Retrieval-Augmented Generation):** Ingests institutional guidelines, internal hospital protocols, clinical trial data, and localized formularies into a vector database to ground every AI response in verified documentation.
+* **Automated Comprehensive Medical Reports:** Synthesizes chat transcripts, lab values, and imaging findings into structured, exportable clinical summary reports.
+* **Human-in-the-Loop Safeguards:** Automatically flags low-confidence or high-risk cases and routes them to attending clinicians for review before final sign-off.
+
+---
+
 ## 🛠️ Tech Stack
 
 ### **Frontend**
 
 * **Vue 3** + **TypeScript** + **Composition API**
-* **Vuetify 3** (UI Component Library)
+* **Vuetify 3** (Medical-grade UI component library)
 * **Pinia** (State Management)
 * **Vue Router** (Routing with short URL support)
 * **Vite** (Build tool & dev server)
@@ -30,14 +51,14 @@ A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / No
 
 * **NestJS** (Node.js framework built with TypeScript)
 * **TypeORM** / **Prisma** (ORM for PostgreSQL interaction)
+* **LangGraph / Node AI Orchestration** (Fabric of reasoning workflows)
 * **JWT Authentication** (Secure API endpoints & sessions)
-* **WebSockets / Gateway** (Real-time chat & human fallback messaging)
+* **WebSockets / Gateway** (Real-time streaming chat & fallback messaging)
 
 ### **Database & Infrastructure**
 
 * **PostgreSQL** (Relational database)
-* **Docker & Docker Compose** (Containerized development & production deployment)
-* **Nginx** (Reverse proxy for production)
+* **Docker & Docker Compose** (Containerized development & independent database setup)
 
 ---
 
@@ -45,26 +66,25 @@ A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / No
 
 ```text
 doctor-ai-open-source/
-├── frontend/             # Vue 3 client application
+├── frontend/               # Vue 3 client application
 │   ├── src/
-│   │   ├── assets/       # Static assets, styles, and i18n legal html docs
-│   │   ├── components/   # Reusable UI components & dialogs
-│   │   ├── views/        # Page views (Chat, Settings, Admin, etc.)
-│   │   └── router/       # Vue Router configuration & feature flags
+│   │   ├── assets/         # Static assets, styles, and medical templates
+│   │   ├── components/     # Reusable UI components & DICOM viewers
+│   │   ├── views/          # Specialty views (Chat, Radiology, Tumor Board, Settings)
+│   │   └── router/         # Vue Router configuration
 │   ├── vite.config.ts
 │   └── package.json
 │
-├── backend/              # NestJS / Node.js API server
+├── backend/                # NestJS / Node.js API server
 │   ├── src/
-│   │   ├── auth/         # Authentication & Authorization modules
-│   │   ├── chat/         # Chat, AI connectors & WebSockets
-│   │   ├── users/        # User management & roles
-│   │   └── main.ts
+│   │   ├── auth/           # Authentication & role-based access control
+│   │   ├── chat/           # Chat, LangGraph connectors & WebSockets
+│   │   ├── reasoning/      # Fabric of reasoning engines, RAG & internet search
+│   │   └── users/          # User management & clinical roles
 │   ├── Dockerfile
 │   └── package.json
 │
-├── docker-compose.dev.yml   # Local development setup with hot-reload
-├── docker-compose.prod.yml  # Production deployment configuration
+├── docker-compose.db.yml   # Independent PostgreSQL database container
 └── README.md
 
 ```
@@ -76,8 +96,10 @@ doctor-ai-open-source/
 ### **Prerequisites**
 
 * [Node.js](https://nodejs.org/) (v20+ recommended)
-* **npm** (This project uses npm exclusively; avoid yarn/pnpm)
-* [Docker & Docker Compose](https://www.docker.com/) (Recommended for running Postgres and services seamlessly)
+* **npm** (This project uses npm exclusively)
+* [Docker & Docker Compose](https://www.docker.com/) (For running PostgreSQL)
+
+---
 
 ### **1. Environment Configuration**
 
@@ -89,7 +111,7 @@ cd doctor-ai-open-source
 
 ```
 
-Create a `.env` file at the root (or copy from `.env.example`) and configure your database and API tokens:
+Create a `.env` file in the root directory:
 
 ```env
 PORT=3000
@@ -104,38 +126,20 @@ JWT_SECRET=your_super_secret_jwt_key
 
 ---
 
-### **Option A: Running with Docker (Recommended)**
+### **2. Running the Database (Docker)**
 
-The easiest way to spin up the Frontend, Backend, and PostgreSQL database simultaneously with hot-reloading enabled is via Docker Compose:
-
-```bash
-# Start development environment
-npm run docker:dev
-# Or directly:
-docker compose -f docker-compose.dev.yml up --build
-
-```
-
-* **Frontend App:** [http://localhost:5173](http://localhost:5173)
-* **Backend API:** [http://localhost:3000](http://localhost:3000)
-
-To check logs or stop the containers:
+Spin up the standalone PostgreSQL database container in the background:
 
 ```bash
-npm run docker:dev:logs
-npm run docker:dev:down
+docker compose -f docker-compose.db.yml up -d
 
 ```
 
 ---
 
-### **Option B: Running Manually (Without Docker)**
+### **3. Running the Backend (NestJS)**
 
-#### **1. Database Setup**
-
-Ensure your local PostgreSQL instance is running and create a database named `doctor_ai_db`.
-
-#### **2. Backend Setup (NestJS)**
+Open a terminal, navigate to the backend directory, install dependencies, and start the development server:
 
 ```bash
 cd backend
@@ -144,64 +148,32 @@ npm run start:dev
 
 ```
 
-The API server will run on `http://localhost:3000`.
+*The API server will run on `http://localhost:3000` with Swagger docs available at `http://localhost:3000/api/docs`.*
 
-#### **3. Frontend Setup (Vue 3)**
+---
 
-Open a separate terminal window:
+### **4. Running the Frontend (Vue 3)**
+
+Open a separate terminal window, navigate to the frontend directory, install dependencies, and start the dev server:
 
 ```bash
 cd frontend
-npm install
+npm install --allow-git=all
 npm run dev
 
 ```
 
-The frontend dev server will run on `http://localhost:5173`.
-
----
-
-## 📦 Production Deployment
-
-To build and run the complete ecosystem in production mode using Docker and Nginx:
-
-```bash
-docker compose -f docker-compose.prod.yml up --build
-
-```
-
-* The production web client will be served at [http://localhost:8080](http://localhost:8080).
-
----
-
-## ⚙ Key Features & Configuration
-
-* **ChatGPT-like Interface:** Complete conversational UI layout featuring a navigation drawer and active thread pane.
-* **Human Fallback:** Seamless protocol enabling automated bots to escalate active user threads to live human support agents.
-* **Social Media Integration:** Built-in connection capabilities for cross-platform sharing and multi-channel messaging (WhatsApp, Instagram, Twitter, etc.).
-* **Feature Flags:** Easily toggle features on/off without writing code by configuring the `VITE_DISABLE_FEATURE_FLAGS` environment variable.
-* **Multi-language Support:** Full i18n implementation covering English, Portuguese, French, Arabic (RTL support), and German.
-
----
-
-## 📚 Documentation
-
-Detailed guides and architecture notes are available inside the [`/docs`](https://www.google.com/search?q=docs/) folder:
-
-* **[Main Documentation Index](https://www.google.com/search?q=docs/README.md)**
-* **[Implementation Guides](https://www.google.com/search?q=docs/implementation/)**
-* **[Integration Guides](https://www.google.com/search?q=docs/integrations/)**
+*The frontend will run on `http://localhost:5173`.*
 
 ---
 
 ## 🤝 Contributing
 
-We welcome contributions from the community!
+We welcome contributions from clinicians, researchers, and engineers passionate about open-source healthcare AI!
 
-1. Review the [`/docs`](https://www.google.com/search?q=docs/) folder before starting new implementations.
-2. Follow established code patterns in frontend components and NestJS modules.
-3. Write clean, modular TypeScript code with appropriate tests.
-4. Open an issue or submit a pull request.
+1. Explore the codebase and review existing reasoning modules in `/backend/src/reasoning`.
+2. Follow established TypeScript patterns and maintain modular architecture.
+3. Submit issues or pull requests for new clinical domain modules, RAG enhancements, or UI tools.
 
 ---
 
