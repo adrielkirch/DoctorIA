@@ -1,6 +1,6 @@
 # Doctor AI — Open Source Product
 
-A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a ChatGPT-like AI conversational interface, human-in-the-loop fallback escalation, dicom image capabilities, and robust multi-language support.
+A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a ChatGPT-like AI conversational interface, human-in-the-loop fallback escalation, dicom image capabilities.
 
 <img width="1906" height="835" alt="image" src="https://github.com/user-attachments/assets/4bd64270-cbda-4e2a-bfa7-17d408ebcba4" />
 
