@@ -2,6 +2,12 @@
 
 A modern, open-source AI platform built with **Vue 3** (frontend), **NestJS / Node.js** (backend API), and **PostgreSQL** (database). It features a clinical-grade conversational interface, multi-agent reasoning graphs, human-in-the-loop fallback escalation, and native DICOM/pathology imaging capabilities—**100% open-source and self-hostable**.
 
+<img width="1600" height="700" alt="image" src="https://github.com/user-attachments/assets/a122b72b-4ec2-41a9-8d1f-0d20c3bee30c" />
+
+<img width="1600" height="706" alt="image" src="https://github.com/user-attachments/assets/8d7dc4b7-6df0-4133-bbfb-f9d0cc1d3a1a" />
+
+<img width="1600" height="620" alt="image" src="https://github.com/user-attachments/assets/4456dd48-671a-4b83-ba5b-b4caf9338568" />
+
 ---
 
 ## 🩺 Supported Clinical Specialties (100% Open Source)
